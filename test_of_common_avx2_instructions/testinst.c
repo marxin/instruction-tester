@@ -7,6 +7,7 @@ const int64_t ops = 8589934592 / 2; // 2^33 operations per test
 const float frequency = 4.3f;
 
 extern void test_latency_vpermpd(int64_t ops);
+extern void test_latency_vpermilpd(int64_t ops);
 extern void test_latency_vblendpd(int64_t ops);
 extern void test_latency_vperm2f128(int64_t ops);
 extern void test_latency_vshufpd(int64_t ops);
@@ -15,6 +16,7 @@ extern void test_latency_vaddpd(int64_t ops);
 extern void test_latency_vmulpd(int64_t ops);
 extern void test_latency_vhaddpd(int64_t ops);
 extern void test_throughput_vpermpd(int64_t ops);
+extern void test_throughput_vpermilpd(int64_t ops);
 extern void test_throughput_vblendpd(int64_t ops);
 extern void test_throughput_vperm2f128(int64_t ops);
 extern void test_throughput_vshufpd(int64_t ops);
@@ -53,6 +55,7 @@ int main(){
   double usec_elapsed, gops_per_sec;
 
   TEST(vpermpd);
+  TEST(vpermilpd);
   TEST(vblendpd);
   TEST(vperm2f128);
   TEST(vshufpd);

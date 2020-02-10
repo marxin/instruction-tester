@@ -130,6 +130,25 @@ test_latency_vpermpd:
     vzeroupper
     retq
 
+.section .text
+//input_rdi=num_of_ops(int64)
+.globl test_latency_vpermilpd
+.type test_latency_vpermilpd,@function
+test_latency_vpermilpd:
+    shrq $6,%rdi
+    xorq %r11,%r11
+.Lloop_test_latency_vpermilpd:
+    incq %r11
+    TEST_LATENCY0 vpermilpd,$1
+    TEST_LATENCY0 vpermilpd,$2
+    TEST_LATENCY0 vpermilpd,$3
+    TEST_LATENCY0 vpermilpd,$4
+    cmpq %rdi,%r11
+    jb .Lloop_test_latency_vpermilpd
+    vzeroupper
+    retq
+
+
 .globl test_latency_vblendpd
 .type test_latency_vblendpd,@function
 test_latency_vblendpd:
@@ -257,6 +276,23 @@ test_throughput_vpermpd:
     jb .Lloop_test_throughput_vpermpd
     vzeroupper
     retq
+
+.globl test_throughput_vpermilpd
+.type test_throughput_vpermilpd,@function
+test_throughput_vpermilpd:
+    shrq $6,%rdi
+    xorq %r11,%r11
+.Lloop_test_throughput_vpermilpd:
+    incq %r11
+    TEST_THROUGHPUT0 vpermilpd,$1
+    TEST_THROUGHPUT0 vpermilpd,$2
+    TEST_THROUGHPUT0 vpermilpd,$3
+    TEST_THROUGHPUT0 vpermilpd,$4
+    cmpq %rdi,%r11
+    jb .Lloop_test_throughput_vpermilpd
+    vzeroupper
+    retq
+
 
 .globl test_throughput_vblendpd
 .type test_throughput_vblendpd,@function
