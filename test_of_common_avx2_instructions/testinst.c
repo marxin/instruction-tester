@@ -39,7 +39,7 @@ extern void test_throughput_vhaddpd(int64_t ops);
   gettimeofday(&endtime,0); \
   usec_elapsed = 1000000*(endtime.tv_sec - starttime.tv_sec) + endtime.tv_usec - starttime.tv_usec; \
   gops_per_sec = (double)ops / usec_elapsed / 1000; \
-  printf("GOPs per second for " # insn " independent instructions: %e, IPC: %.2f\n", gops_per_sec, frequency / gops_per_sec);
+  printf("GOPs per second for " # insn " independent instructions: %e, rec. throughput: %.2f\n", gops_per_sec, frequency / gops_per_sec);
 
 #define TEST(insn) \
 { \
